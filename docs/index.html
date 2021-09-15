@@ -1,5 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebCam</title>
 
-const videoElement = document.querySelector("video");
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <div id="container">
+        <div id="camera">
+            <video autoplay></video>
+            <select name="" id="audioSource" class=""></select>
+            <select name="" id="videoSource" class=""></select>
+        </div>
+        <div id="gallery">
+
+        </div>
+    </div>
+
+    <script asy src="/scripts.js"></script>
+</body>
+</html>
+
+<script type="text/javascript">
+    const videoElement = document.querySelector("video");
 const audioSelect = document.querySelector("select#audioSource");
 const videoSelect = document.querySelector("select#videoSource");
 
@@ -60,3 +86,4 @@ function gotStream(stream) {
 function handleError(error) {
   console.error("Error: ", error);
 }
+</script>
