@@ -69,21 +69,18 @@ const canvas = document.createElement("canvas");
 var gallery = document.querySelector("#gallery");
 var personShape = document.querySelector("#person-shape");
 
-const constraints = {
-    video: {
-      deviceId: { exact: videoSelect.value },
-      width:4096,
-      height:2160
-    }
-  };
+async function getDevices(){
+  await navigator.mediaDevices.getUserMedia({audio: true, video: true})
 
-navigator.mediaDevices.getUserMedia(constraints);
-
-navigator.mediaDevices
+await navigator.mediaDevices
   .enumerateDevices()
   .then(gotDevices)
   .then(getStream)
   .catch(handleError);
+}
+
+getDevices();
+
 
 videoSelect.onchange = getStream;
 
@@ -120,6 +117,14 @@ function getStream() {
       track.stop();
     });
   }
+
+  const constraints = {
+    video: {
+      deviceId: { exact: videoSelect.value },
+      width:4096,
+      height:2160
+    }
+  };
 
   navigator.mediaDevices
     .getUserMedia(constraints)
