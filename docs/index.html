@@ -13,9 +13,24 @@
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 10px;
   }
+  #video-box{
+    position: relative;
+  }
+  #person-shape{
+    position:absolute;
+    width:70%;
+    min-height:40px;
+    z-index:300000;
+    bottom:5px;
+    left:15%;
+    text-align:center;
+  }
   img{
     width: 100%;
   }
+  .hidden {
+  display: none;
+}
   @media screen and (max-width: 1200px) {
     #gallery{
     display: grid;
@@ -28,9 +43,13 @@
     <div id="container">
         <canvas style="display:none;"></canvas>
         <div id="camera" style="display: flex; flex-direction: column; align-items: center;">
-            <video autoplay style="width: 100%; height: 400px; background-color: grey;"></video>
+            <div id="video-box">
+              <img id="person-shape" src="/img/person_shape.png" alt="person_shape">
+              <video autoplay style="width: 100%; height: 400px; background-color: grey;"></video>
+            </div>
             <div style="margin-top: 40px;">
               <select name="" id="videoSource" class=""></select>
+              <button id="shape-button">Toggle shape</button>
               <button id="screenshot-button" disabled>Take Screenshot</button>
             </div>
         </div>
@@ -45,8 +64,10 @@
 const videoElement = document.querySelector("video");
 const videoSelect = document.querySelector("select#videoSource");
 const screenshotButton = document.querySelector("#screenshot-button");
+const shapeButton = document.querySelector("#shape-button");
 const canvas = document.createElement("canvas");
 var gallery = document.querySelector("#gallery");
+var personShape = document.querySelector("#person-shape");
 
 navigator.mediaDevices
   .enumerateDevices()
@@ -55,6 +76,10 @@ navigator.mediaDevices
   .catch(handleError);
 
 videoSelect.onchange = getStream;
+
+shapeButton.onclick = function(){
+  personShape.classList.toggle('hidden');
+}
 
 screenshotButton.onclick = videoElement.onclick = function () {
   canvas.width = videoElement.videoWidth;
