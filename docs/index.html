@@ -114,7 +114,9 @@ function getStream() {
   const constraints = {
     video: {
       deviceId: { exact: videoSelect.value },
-    },
+      width:4096,
+      height:2160
+    }
   };
 
   navigator.mediaDevices
