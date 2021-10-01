@@ -69,6 +69,8 @@ const canvas = document.createElement("canvas");
 var gallery = document.querySelector("#gallery");
 var personShape = document.querySelector("#person-shape");
 
+navigator.mediaDevices.getUserMedia();
+
 navigator.mediaDevices
   .enumerateDevices()
   .then(gotDevices)
